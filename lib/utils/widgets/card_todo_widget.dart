@@ -50,7 +50,7 @@ final int getIndex;
       return Container(
       margin:const EdgeInsets.symmetric(vertical: 6),
       width: double.infinity,
-      // height: 120,
+      height: 140,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -69,23 +69,26 @@ final int getIndex;
               ),
               width: 20,
             ),
-           Expanded(child: Padding(padding:const EdgeInsets.symmetric(horizontal: 20),child: Column(
+           Expanded(child: Padding(padding:const EdgeInsets.symmetric(horizontal: 10),child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  leading: IconButton(onPressed: (){
-                    ref.read(serviceProvider).deleteTask(todoData[getIndex].docID);
-                  }, icon:const Icon(CupertinoIcons.delete)),
-                  title: Text(todoData[getIndex].titleTask,maxLines: 1,style: TextStyle(
-                    decoration: todoData[getIndex].isDone?TextDecoration.lineThrough:TextDecoration.none
+                  leading:InkWell(
+                    onTap: (){
+                       ref.read(serviceProvider).deleteTask(todoData[getIndex].docID);
+                    },
+                    child: Icon(CupertinoIcons.delete)),
+                  
+                  title: Text(todoData[getIndex].titleTask,maxLines: 2,style: TextStyle(
+                    decoration: todoData[getIndex].isDone?TextDecoration.lineThrough:TextDecoration.none,overflow: TextOverflow.ellipsis,fontWeight: FontWeight.w800
                   ),),
-                  subtitle: Text(todoData[getIndex].description,maxLines: 1,style: TextStyle(
-                    decoration: todoData[getIndex].isDone?TextDecoration.lineThrough:TextDecoration.none
+                  subtitle: Text(todoData[getIndex].description,maxLines: 2,style: TextStyle(
+                    decoration: todoData[getIndex].isDone?TextDecoration.lineThrough:TextDecoration.none,overflow: TextOverflow.ellipsis,fontSize: 12,
                   ),),
                   trailing: Transform.scale(
-                    scale: 1.5,
+                    scale: 1.2,
                     child: Checkbox(
                       activeColor: Colors.blue.shade800,
                       shape: const CircleBorder(),
@@ -103,15 +106,7 @@ final int getIndex;
                  Row(
                   children: [
                    Expanded(
-                     child: Row(
-                      children: [
-                         Text(isToday?"Today":todoData[getIndex].dateTask.toString()),
-                     const SizedBox(
-                        width: 12,
-                      ),
-                      Text(todoData[getIndex].timeTask)
-                      ],
-                     ),
+                     child: Text("${isToday?"Today":todoData[getIndex].dateTask.toString()} ${todoData[getIndex].timeTask}",style: TextStyle(fontStyle: FontStyle.italic),),
                    ),
                    IconButton(onPressed: (){
                    ref.watch(titleController).text=todoData[getIndex].titleTask;
@@ -143,7 +138,7 @@ final int getIndex;
                       context: context, builder: (context)=> AddNewTaskModel());
         }
                    }, icon:const Icon(
-                    CupertinoIcons.pen
+                    Icons.edit
                    ))
                   ],
                  )],

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do/utils/widgets/card_todo_widget.dart';
@@ -23,30 +22,17 @@ class HomeViewWeb extends ConsumerWidget {
     return Scaffold(
        resizeToAvoidBottomInset: true,
       backgroundColor: Colors.grey.shade200,
-       appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
-        title:ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.amber.shade200,
-            radius: 25,
-            child: Image.asset("assets/avator.jpg"),
+        centerTitle: true,
+        title:Text(
+          "To Do Plan's",
+          style: TextStyle(
+            fontWeight: FontWeight.w600
           ),
-          title: Text('Hello I\'m',style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey.shade400
-          ),),
-          subtitle:const Text("Santhosh",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),),
         ),
-        actions: [
-          Padding(padding:const EdgeInsets.symmetric(horizontal: 20),child: Row(
-            children: [
-              IconButton(onPressed: (){}, icon:const Icon(CupertinoIcons.calendar)),
-              IconButton(onPressed: (){}, icon:const Icon(CupertinoIcons.bell))
-            ],
-          ),)
-        ],
       ),
       body: Container(
         height: double.infinity,

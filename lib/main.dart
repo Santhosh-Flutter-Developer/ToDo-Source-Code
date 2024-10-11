@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return ProviderScope(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Todo',
+        title: 'To Do',
         theme: ThemeData(
         ),
         home:const HomeView(),

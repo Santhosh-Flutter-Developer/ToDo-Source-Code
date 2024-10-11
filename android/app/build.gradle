@@ -29,7 +29,8 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 33
+    namespace 'com.example.to_do'
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -56,7 +57,14 @@ android {
         versionName flutterVersionName
         multiDexEnabled true
     }
-
+    
+    tasks.whenTaskAdded { task ->
+    if (task.name == 'mapDebugSourceSetPaths') {
+        task.dependsOn 'processDebugGoogleServices'
+    }
+}
+ 
+ 
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

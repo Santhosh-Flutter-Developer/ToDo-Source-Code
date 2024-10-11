@@ -23,30 +23,17 @@ class HomeViewTablet extends ConsumerWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(
+     appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
-        title:ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.amber.shade200,
-            radius: 25,
-            child: Image.asset("assets/avator.jpg"),
+        centerTitle: true,
+        title:Text(
+          "To Do Plan's",
+          style: TextStyle(
+            fontWeight: FontWeight.w600
           ),
-          title: Text('Hello I\'m',style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey.shade400
-          ),),
-          subtitle:const Text("Santhosh",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),),
         ),
-        actions: [
-          Padding(padding:const EdgeInsets.symmetric(horizontal: 20),child: Row(
-            children: [
-              IconButton(onPressed: (){}, icon:const Icon(CupertinoIcons.calendar)),
-              IconButton(onPressed: (){}, icon:const Icon(CupertinoIcons.bell))
-            ],
-          ),)
-        ],
       ),
     body: SingleChildScrollView(
       child: Padding(padding: const EdgeInsets.symmetric(horizontal: 30),child: Column(
@@ -98,7 +85,7 @@ class HomeViewTablet extends ConsumerWidget {
               ],
             ),
           ),
-         ResponsiveGridRow(
+         todoData.value!=null&&todoData.value!.isNotEmpty? ResponsiveGridRow(
                       children: List.generate(todoData.value?.length??0, (index) => ResponsiveGridCol(
                         xl:6,
                         lg:6,
@@ -109,7 +96,7 @@ class HomeViewTablet extends ConsumerWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: CardTodoListWidget(getIndex: index),
                         ))),
-                    )
+                    ):Image.asset("assets/notodo.png")
         
         ],
       ),),

@@ -29,29 +29,16 @@ class HomeViewMobile extends ConsumerWidget {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
-        title:ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.amber.shade200,
-            radius: 25,
-            child: Image.asset("assets/avator.jpg"),
+        centerTitle: true,
+        title:Text(
+          "To Do Plan's",
+          style: TextStyle(
+            fontWeight: FontWeight.w600
           ),
-          title: Text('Hello I\'m',style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey.shade400
-          ),),
-          subtitle:const Text("Santhosh",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),),
         ),
-        actions: [
-          Padding(padding:const EdgeInsets.symmetric(horizontal: 20),child: Row(
-            children: [
-              IconButton(onPressed: (){}, icon:const Icon(CupertinoIcons.calendar)),
-              IconButton(onPressed: (){}, icon:const Icon(CupertinoIcons.bell))
-            ],
-          ),)
-        ],
       ),
     body: SingleChildScrollView(
-      child: Padding(padding: const EdgeInsets.symmetric(horizontal: 30),child: Column(
+      child: Padding(padding: const EdgeInsets.symmetric(horizontal: 10),child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical:20.0),
@@ -96,10 +83,12 @@ class HomeViewMobile extends ConsumerWidget {
               ],
             ),
           ),
-          ListView.builder(
+          todoData.value!=null&&todoData.value!.isNotEmpty?ListView.builder(
             itemCount: todoData.value?.length??0,
             shrinkWrap: true,
-            itemBuilder: (context,index)=> CardTodoListWidget(getIndex: index,)),
+            itemBuilder: (context,index)=> CardTodoListWidget(getIndex: index,)):Container(
+              height: 500,
+              child: Image.asset("assets/notodo.png")),
         
         ],
       ),),
